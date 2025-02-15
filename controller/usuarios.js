@@ -73,12 +73,17 @@ const usuariosPost = async(req, res = response) => {
 
 const usuariosDelete=async(req, res=response) => {
     const {id} = req.params;
+    const uid = req.uid;
     //borrado fisico.
     //const usuario = await Usuario.findByIdAndDelete(id);
     //borrado logico:
     const usuario = await Usuario.findByIdAndUpdate(id, {estado:false});
+    //obtener al usuario autenticado
+    //const usuarioAutenticado = req.usuario;
+    //imprimir el usuario (borrado) y el autenticado
     res.json({
         usuario
+        //usuarioAutenticado
     });
 }
 
@@ -87,7 +92,7 @@ const usuariosPatch=(req, res=response) => {
         msg: 'patch API - controller'
     });
 }
-
+    
 //se exporta un objeto pues van haber muchos
 module.exports = {
     usuariosGet,
